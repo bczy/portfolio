@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import i18n from './i18n';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <section className="App">
+      <h1>{i18n.t('welcome')}</h1>
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            {i18n.t('presentation.line1')}
+            <br/>
+            {i18n.t('presentation.line2')}
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+          <p>{i18n.t('presentation.line3')}</p>
+          <p>{i18n.t('presentation.line4')}</p>
+          <div>
+            <img alt="github profil" src="img/gihub-logo.png"/>
+            <img alt="likedin profil" src="img/gihub-logo.png"/>
+            <img alt="instagram profil" src="img/gihub-logo.png"/>
+          </div>
+      </section>
     );
   }
 }
