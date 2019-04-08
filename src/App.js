@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import i18n from './i18n';
+import Card from './components/Card';
+import Marquee from './components/Marquee';
 
 class App extends Component {
   render() {
     return (
-      <section className="App">
-      <h1>{i18n.t('welcome')}</h1>
-          <p>
-            {i18n.t('presentation.line1')}
-            <br/>
-            {i18n.t('presentation.line2')}
-          </p>
-          <p>{i18n.t('presentation.line3')}</p>
-          <p>{i18n.t('presentation.line4')}</p>
-          <div>
-            <img alt="github profil" src="img/gihub-logo.png"/>
-            <img alt="likedin profil" src="img/gihub-logo.png"/>
-            <img alt="instagram profil" src="img/gihub-logo.png"/>
-          </div>
-      </section>
+      <div className={styles.app}>
+        <Marquee message="helloWorld"/>
+        <Card/>
+        <ul>
+          <ul><img alt="github profil" src="img/github-logo.png"/></ul>
+          <ul><img alt="likedin profil" src="img/js-logo.png"/></ul>
+          <ul><img alt="instagram profil" src="img/linkedin-logo.png"/></ul>
+        </ul>
+      </div>
     );
   }
 }
+
+const styles = {
+  app: {
+    'text-align': 'center',
+    color: '#333'  
+  },
+};
 
 export default App;
