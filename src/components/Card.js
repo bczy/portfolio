@@ -1,25 +1,26 @@
 import React from 'react';
 import i18n from '../i18n';
+import styled from 'styled-components';
 
 function Card(){
     return (
-      <div style={styles.card}>
-          <ul style={styles.card.text}>
-            <li>{i18n.t('idCard.brief')}</li>
-            <li>{i18n.t('idCard.skills')}</li>
-            <li>{i18n.t('idCard.hobbies')}</li>
-          </ul>
-      </div>
+      <CardContainer>
+        <div>{i18n.t('idCard.brief')}</div>
+        <div>{i18n.t('idCard.skills')}</div>
+        <div>{i18n.t('idCard.hobbies')}</div>
+      </CardContainer>
     );
 }
-const styles = {
-  card: {
-    text: {
-      'list-style-type': 'none',
-      'font-size': '0.8em',
-      'text-align': 'left'
-    },
-  },
-  
-};
+
+const CardContainer = styled.div`  
+{
+  margin: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  width: 20em;
+}
+div{
+  font-size: 0.8em
+}
+`
 export default Card;

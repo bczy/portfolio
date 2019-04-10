@@ -7,7 +7,7 @@ function Marquee(props){
     return (
       <Box>
           <div class="inner">
-            <span>{i18n.t(props.message)}</span>
+						<span>{i18n.t(props.message)}</span>
           </div>
           <div class="inner">
             <span>{i18n.t(props.message)}</span>
@@ -77,4 +77,3 @@ const Box = styled.div`
 `;
 
 export default Marquee;
-
