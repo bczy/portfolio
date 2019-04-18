@@ -7,26 +7,28 @@ i18next
       escapeValue: false,
     },
     lng: 'en', // 'en' | 'fr'
-    // Using simple hardcoded resources for simple example
     resources: {
       en: {
         translation: {
-          helloWorld: 'Hello World!',
-          idCard: { 
-            brief: 'Bertrand (aka trambz), coding enthousiast.', 
-            skills: 'Skills: React, VuesJS, Unity, C#, C++',
-            hobbies: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming', 
-          }, 
+          header: [ 
+            '##############################################################', 
+            '# Hi there, welcome to my playground!', 
+            '# Hobbies: street-art, longboarding, travels, soccer, retro-gaming', 
+            '# Skills: React, Vues.js, JS, Unity, ReactNative, C#, C++, ZSH, Node.JS, JAVA, SQL',
+            '##############################################################', 
+          ],
         },
       },
       fr: {
         translation: {
           welcome: 'Bienvenue!',
           idCard: { 
+            headerSeparator: '################################', 
             brief: 'Bertrand (aka trambz), coding enthousiast.', 
             skills: 'Skills: React, VuesJS, Unity, C#, C++',
             line4: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming', 
           }, 
+        
         },
       },
     },

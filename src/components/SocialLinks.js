@@ -3,11 +3,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 function SocialsLinks(){
+    const urls = [
+      {id: 0, siteName: 'Github', url: 'Welcome to learning React!'},
+      {id: 1, siteName: 'Linkedin', url: 'You can install React from npm.'}
+    ];
     return (
       <SocialLinksContainer>
-        <div class="badge"><img alt="github profil" src="img/github-logo.png"/></div>
-        <div class="badge"><img alt="likedin profil" src="img/js-logo.png"/></div>
-        <div class="badge"><img alt="instagram profil" src="img/linkedin-logo.png"/></div>
+          {urls.forEach((link) => 
+            <div key={link.id.toString()}><a href={link.url}>{link.siteName}</a></div>
+          )}
       </SocialLinksContainer>
     );
 }

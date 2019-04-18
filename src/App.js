@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-import Card from './components/Card';
-import Marquee from './components/Marquee';
+import WelcomeBanner from './components/WelcomeBanner';
 import SocialsLinks from './components/SocialLinks';
 
-class App extends Component {
-  render() {
-    return (
-      <Portfolio>
-        <Marquee message="helloWorld"/>
-        <Card/>
-        <SocialsLinks/>
-      </Portfolio>
-    );
-  }
-}
-//TODO add flex layout
-const Portfolio = styled.div`  
-body {
+function App(){
+  // Define what props.theme will look like
+  const GlobalStyle = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=VT323');
+    body {
+      background-color: #0000FF;
+      word-wrap: break-word;
+    }`
 
+  return (
+    <>
+      <GlobalStyle whiteColor />
+      <WelcomeBanner/>
+      <SocialsLinks/>
+    </>
+      
+  );
 }
-`
+
 export default App;
