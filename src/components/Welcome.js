@@ -2,17 +2,17 @@ import React from 'react';
 import i18n from '../i18n';
 import styled from 'styled-components';
 
-function Card(){
+function Welcome(){
     return (
-      <CardContainer>
-        <div>{i18n.t('idCard.brief')}</div>
-        <div>{i18n.t('idCard.skills')}</div>
+      <WelcomeContainer>
+        <div>{i18n.t('welcome')}</div>
+        <div>{i18n.t('description')}</div>
         <div>{i18n.t('idCard.hobbies')}</div>
-      </CardContainer>
+      </WelcomeContainer>
     );
 }
 
-const CardContainer = styled.div`  
+const WelcomeContainer = styled.div`  
 {
   margin: auto;
   padding-top: 2em;
@@ -23,4 +23,4 @@ div{
   font-size: 1em;
 }
 `
-export default Card;
+export default Welcome;

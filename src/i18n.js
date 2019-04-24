@@ -17,6 +17,8 @@ i18next
             skills: 'Skills: React, VuesJS, Unity, C#, C++',
             hobbies: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming', 
           }, 
+          welcome: 'Welcome to my playground',
+          description: 'You will find here some stuff: poc, demo...',
         },
       },
       fr: {

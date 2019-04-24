@@ -1,26 +1,37 @@
 import React, { Component } from 'react';
 
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 import Card from './components/Card';
 import Marquee from './components/Marquee';
+import Welcome from './components/Welcome';
 import SocialsLinks from './components/SocialLinks';
 
 class App extends Component {
   render() {
     return (
-      <Portfolio>
+      <>
+        <GlobalStyle />
         <Marquee message="helloWorld"/>
+        <Welcome/>
         <Card/>
         <SocialsLinks/>
-      </Portfolio>
+      </>
     );
   }
 }
-//TODO add flex layout
-const Portfolio = styled.div`  
-body {
 
+const GlobalStyle = createGlobalStyle`
+
+body {
+  color: #777;
+  background-color: #EFEFEF;
+  word-wrap: break-word;
+  font-family: 'Muli', sans-serif
+}
+div {
+  @import url('https://fonts.googleapis.com/css?family=Muli');
 }
 `
+
 export default App;
