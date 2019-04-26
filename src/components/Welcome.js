@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import i18n from '../i18n';
 import styled from 'styled-components';
 
 function Welcome(props){
-  const translateValue = `translateX(${(1- props.scroll) * 100}%)`;
   return (
-    <WelcomeContainer style={{transform:translateValue}} scroll={props.scroll}>
-      <div>{i18n.t('welcome')}</div>
-      <div>{i18n.t('description')}</div>
-    </WelcomeContainer>
+      <WelcomeContainer>
+        <div>{i18n.t('welcome')}</div>
+        <div>{i18n.t('description')}</div>
+      </WelcomeContainer>
   );
 }
 
 const WelcomeContainer = styled.div(() => ({
-  margin: "25% 0%",
-  width: "50%",
-  "font-size" : "2em",
+  margin: 0,
+  position: "absolute",
+  padding: "10%",
+  width: "40%",
+  "font-size" : "1.9em",
 }));
 
 export default Welcome;

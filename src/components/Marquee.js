@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import i18n from '../i18n';
 
 import styled, {keyframes} from 'styled-components'
 
 function Marquee(props){
+		const box = useRef(null);
+		useEffect(() => {
+			box.current.style.opacity = props.scroll;
+		});
+
     return (
-			<BoxContainer scroll={props.scroll}>
-				<Box>
+				<Box ref={box}>
 						<div className="inner">
 							<span>{i18n.t(props.message)}</span>
 						</div>
@@ -14,13 +18,9 @@ function Marquee(props){
 							<span>{i18n.t(props.message)}</span>
 						</div>
 				</Box>
-			</BoxContainer>
     );
 }
 
-const BoxContainer = styled.div(props => ({
-  opacity:  props.scroll
-}));
 // Create the keyframes
 const marquee = keyframes`
  {
@@ -40,7 +40,7 @@ const Box = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 25% 0;
+		padding: 25% 0;
 		align:center;
 		width:100%;
 		font-size: 4.25em;

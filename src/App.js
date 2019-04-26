@@ -1,34 +1,29 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React from 'react';
 
 import { createGlobalStyle } from 'styled-components';
+import { useSpring, animated } from 'react-spring'
 
 import Card from './components/Card';
 import Marquee from './components/Marquee';
 import Welcome from './components/Welcome';
 
 function App () {
-  const [scroll, updateScroll] = useState(0);
-  useLayoutEffect(() => {
-    let requestRunning = false;
-    function handleScroll(){
-      if (!requestRunning) {
-        requestRunning = window.requestAnimationFrame(() => {
-          updateScroll(window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight));
-          requestRunning = false;
-        });
-      }
-    }
+  const [props, set] = useSpring(() => ({ scrollRatio: 0, config: { mass: 10, tension: 550, friction: 140 } }))
+  
+  const calc = () => window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+  const leftParallax = (scrollRatio) => `translate3d(${(0.50 - scrollRatio) * 100}%, 10%, 0)`
 
-    window.addEventListener('scroll', handleScroll);
-  })
- 
   return (
-    <>
+    <div onWheel={_ => set( {scrollRatio : calc()})}>
       <GlobalStyle />
-      <Welcome scroll={scroll}/>
-      <Marquee scroll={scroll} message="helloWorld"/>
+      <animated.div style={{ transform: props.scrollRatio.interpolate(leftParallax) }} >
+        <Welcome/>
+      </animated.div>
+      <animated.div style={{ opacity: props.scrollRatio}}>
+        <Marquee message="helloWorld"/>
+      </animated.div>
       <Card/>
-    </>
+    </div>
   );
   
 }
