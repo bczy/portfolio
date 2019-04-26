@@ -5,17 +5,22 @@ import styled, {keyframes} from 'styled-components'
 
 function Marquee(props){
     return (
-      <Box>
-          <div class="inner">
-						<span>{i18n.t(props.message)}</span>
-          </div>
-          <div class="inner">
-            <span>{i18n.t(props.message)}</span>
-          </div>
-      </Box>
+			<BoxContainer scroll={props.scroll}>
+				<Box>
+						<div className="inner">
+							<span>{i18n.t(props.message)}</span>
+						</div>
+						<div className="inner">
+							<span>{i18n.t(props.message)}</span>
+						</div>
+				</Box>
+			</BoxContainer>
     );
 }
 
+const BoxContainer = styled.div(props => ({
+  opacity:  props.scroll
+}));
 // Create the keyframes
 const marquee = keyframes`
  {
@@ -35,7 +40,7 @@ const Box = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: 1em;
+		margin: 25% 0;
 		align:center;
 		width:100%;
 		font-size: 4.25em;
@@ -75,6 +80,7 @@ const Box = styled.div`
 	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
+	padding-right:0%
 }
 
 .inner:first-child {

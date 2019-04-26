@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-
+console.log('nuf')
 i18next
   .init({
     interpolation: {
