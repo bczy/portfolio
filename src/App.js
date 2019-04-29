@@ -7,19 +7,19 @@ import Card from './components/Card';
 import Marquee from './components/Marquee';
 import Welcome from './components/Welcome';
 
-function App () {
-  const [props, set] = useSpring(() => ({ scrollRatio: 0, config: { mass: 10, tension: 550, friction: 140 } }))
+export default function App () {
+  const [springProp, setSpringProp] = useSpring(() => ({ scrollRatio: 0, config: { mass: 10, tension: 550, friction: 140 } }))
   
   const calc = () => window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
   const leftParallax = (scrollRatio) => `translate3d(${(0.50 - scrollRatio) * 100}%, 10%, 0)`
 
   return (
-    <div onWheel={_ => set( {scrollRatio : calc()})}>
+    <div onWheel={_ => setSpringProp( {scrollRatio : calc()})}>
       <GlobalStyle />
-      <animated.div style={{ transform: props.scrollRatio.interpolate(leftParallax) }} >
+      <animated.div style={{ transform: springProp.scrollRatio.interpolate(leftParallax) }} >
         <Welcome/>
       </animated.div>
-      <animated.div style={{ opacity: props.scrollRatio}}>
+      <animated.div style={{ opacity: springProp.scrollRatio}}>
         <Marquee message="helloWorld"/>
       </animated.div>
       <Card/>
@@ -40,5 +40,3 @@ div {
   @import url('https://fonts.googleapis.com/css?family=Muli');
 }
 `
-
-export default App;
