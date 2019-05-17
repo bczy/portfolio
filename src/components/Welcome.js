@@ -1,23 +1,31 @@
-import React from 'react';
+import React from 'react'
 
-import i18n from '../i18n';
-import styled from 'styled-components';
+import i18n from '../i18n'
+import styled from 'styled-components'
+import { animated } from 'react-spring'
 
-function Welcome(props){
+function Welcome (props) {
+  const translateLeft = scrollRatio =>
+    `translate3d(${(0.5 - scrollRatio) * 100}%, 10%, 0)`
+
   return (
+    <animated.div
+      style={{ transform: props.scrollRatio.interpolate(translateLeft) }}
+    >
       <WelcomeContainer>
         <div>{i18n.t('welcome')}</div>
         <div>{i18n.t('description')}</div>
+        <div>{i18n.t('extraContent')}</div>
       </WelcomeContainer>
-  );
+    </animated.div>
+  )
 }
 
 const WelcomeContainer = styled.div(() => ({
   margin: 0,
-  position: "absolute",
-  padding: "10%",
-  width: "40%",
-  "font-size" : "1.9em",
-}));
+  padding: '10%',
+  width: '40%',
+  'font-size': '1.9em'
+}))
 
-export default Welcome;
+export default Welcome

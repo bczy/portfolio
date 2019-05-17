@@ -1,39 +1,43 @@
-import React from 'react';
+import React from 'react'
 
-import { createGlobalStyle } from 'styled-components';
-import { useSpring, animated } from 'react-spring'
+import { createGlobalStyle } from 'styled-components'
 
-import Card from './components/Card';
-import Marquee from './components/Marquee';
-import Welcome from './components/Welcome';
+import Welcome from './components/Welcome'
+import Card from './components/Card'
+import City from './components/City'
+
+import { useSpring } from 'react-spring'
 
 function App () {
-  const [props, set] = useSpring(() => ({ scrollRatio: 0, config: { mass: 10, tension: 550, friction: 140 } }))
-  
-  const calc = () => window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-  const leftParallax = (scrollRatio) => `translate3d(${(0.50 - scrollRatio) * 100}%, 10%, 0)`
+  const calc = () =>
+    window.scrollY /
+    (document.documentElement.scrollHeight -
+      document.documentElement.clientHeight)
+
+  const [props, set] = useSpring(() => ({
+    scrollRatio: 0,
+    config: { mass: 2, tension: 550, friction: 140 }
+  }))
 
   return (
-    <div onWheel={_ => set( {scrollRatio : calc()})}>
+    <div onWheel={_ => set({ scrollRatio: calc() })}>
       <GlobalStyle />
-      <animated.div style={{ transform: props.scrollRatio.interpolate(leftParallax) }} >
-        <Welcome/>
-      </animated.div>
-      <animated.div style={{ opacity: props.scrollRatio}}>
-        <Marquee message="helloWorld"/>
-      </animated.div>
-      <Card/>
+      <Welcome scrollRatio={props.scrollRatio} />
+      <City scrollRatio={props.scrollRatio} />
+      <Card />
     </div>
-  );
-  
+  )
 }
 
 const GlobalStyle = createGlobalStyle`
 body {
-  color: #777;
-  background-color: #EFEFEF;
+  color: #ccc;
+  background-color: #222;
   margin:0;
-  font-family: 'Muli', sans-serif
+  padding:0;
+  font-family: 'Muli', sans-serif;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 div {
@@ -41,4 +45,4 @@ div {
 }
 `
 
-export default App;
+export default App
