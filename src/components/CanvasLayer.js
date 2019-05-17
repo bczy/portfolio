@@ -9,12 +9,7 @@ import {
   useThree
 } from 'react-three-fiber'
 
-import {
-  apply as applySpring,
-  useSpring,
-  a,
-  interpolate
-} from 'react-spring/three'
+import { apply as applySpring, useSpring, a } from 'react-spring/three'
 
 import data from '../data'
 // Import and register postprocessing classes as three-native-elements for both react-three-fiber & react-spring

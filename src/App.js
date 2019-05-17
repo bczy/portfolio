@@ -8,22 +8,22 @@ import City from './components/City'
 
 import { useSpring } from 'react-spring'
 
-function App () {
+export default function App () {
+  const [springProp, setSpringProp] = useSpring(() => ({
+    scrollRatio: 0,
+    config: { mass: 10, tension: 550, friction: 140 }
+  }))
+
   const calc = () =>
     window.scrollY /
     (document.documentElement.scrollHeight -
       document.documentElement.clientHeight)
 
-  const [props, set] = useSpring(() => ({
-    scrollRatio: 0,
-    config: { mass: 2, tension: 550, friction: 140 }
-  }))
-
   return (
-    <div onWheel={_ => set({ scrollRatio: calc() })}>
+    <div onWheel={_ => setSpringProp({ scrollRatio: calc() })}>
       <GlobalStyle />
-      <Welcome scrollRatio={props.scrollRatio} />
-      <City scrollRatio={props.scrollRatio} />
+      <Welcome scrollRatio={springProp.scrollRatio} />
+      <City scrollRatio={springProp.scrollRatio} />
       <Card />
     </div>
   )
@@ -44,5 +44,3 @@ div {
   @import url('https://fonts.googleapis.com/css?family=Muli');
 }
 `
-
-export default App
