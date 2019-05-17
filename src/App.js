@@ -1,33 +1,43 @@
-import React from 'react'
-
-import { createGlobalStyle } from 'styled-components'
-
-import Welcome from './components/Welcome'
+import React, { useCallback } from 'react'
+import { useSpring } from 'react-spring'
+import styled, { createGlobalStyle } from 'styled-components'
 import Card from './components/Card'
 import City from './components/City'
-
-import { useSpring } from 'react-spring'
+import Welcome from './components/Welcome'
 
 export default function App () {
-  const [springProp, setSpringProp] = useSpring(() => ({
-    scrollRatio: 0,
-    config: { mass: 10, tension: 550, friction: 140 }
-  }))
+  const [{ top, mouse }, set] = useSpring(() => ({ top: 0, mouse: [0, 0] }))
+  const onMouseMove = useCallback(
+    ({ clientX: x, clientY: y }) =>
+      set({ mouse: [x - window.innerWidth / 2, y - window.innerHeight / 2] }),
+    []
+  )
 
-  const calc = () =>
-    window.scrollY /
-    (document.documentElement.scrollHeight -
-      document.documentElement.clientHeight)
+  const onScroll = useCallback(e => set({ top: e.target.scrollTop }), [])
 
   return (
-    <div onWheel={_ => setSpringProp({ scrollRatio: calc() })}>
+    <div>
       <GlobalStyle />
-      <Welcome scrollRatio={springProp.scrollRatio} />
-      <City scrollRatio={springProp.scrollRatio} />
+      <Welcome top={top} mouse={mouse} />
+      <City top={top} mouse={mouse} />
       <Card />
+      <ScrollContainer onScroll={onScroll} onMouseMove={onMouseMove}>
+        <div style={{ height: '525vh' }} />
+      </ScrollContainer>
     </div>
   )
 }
+
+const ScrollContainer = styled.div(() => ({
+  position: 'absolute',
+  overflow: 'auto',
+  top: '0px',
+  width: '100%',
+  height: '200vh',
+  fontSize: '20em',
+  fontWeight: '800',
+  lineHeight: '0.9em'
+}))
 
 const GlobalStyle = createGlobalStyle`
 body {

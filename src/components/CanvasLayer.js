@@ -11,9 +11,9 @@ import {
 
 import { apply as applySpring, useSpring, a } from 'react-spring/three'
 
-import data from '../data'
+import data from '../d  ata'
 // Import and register postprocessing classes as three-native-elements for both react-three-fiber & react-spring
-// They'll be available as native elements <effectComposer /> from then on ...
+// They'll be available as native elements <effectComposer /> from then ØØØØØ ...
 import { EffectComposer } from './postprocessing/EffectComposer'
 import { RenderPass } from './postprocessing/RenderPass'
 import { GlitchPass } from './postprocessing/GlitchPass'

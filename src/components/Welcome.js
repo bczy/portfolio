@@ -4,14 +4,13 @@ import i18n from '../i18n'
 import styled from 'styled-components'
 import { animated } from 'react-spring'
 
-function Welcome (props) {
-  const translateLeft = scrollRatio =>
-    `translate3d(${(0.5 - scrollRatio) * 100}%, 10%, 0)`
-
+function Welcome ({ top }) {
+  const translateLeft = scrollRatio => {
+    console.log('mufmuf')
+    return `translate3d(${(0.5 + scrollRatio) * 5}vh, 10%, 0)`
+  }
   return (
-    <animated.div
-      style={{ transform: props.scrollRatio.interpolate(translateLeft) }}
-    >
+    <animated.div style={{ transform: top.interpolate(translateLeft) }}>
       <WelcomeContainer>
         <div>{i18n.t('welcome')}</div>
         <div>{i18n.t('description')}</div>
