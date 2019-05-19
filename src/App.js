@@ -6,25 +6,22 @@ import City from './components/City'
 import Welcome from './components/Welcome'
 
 export default function App () {
-  const [{ top, mouse }, set] = useSpring(() => ({ top: 0, mouse: [0, 0] }))
-  const onMouseMove = useCallback(
-    ({ clientX: x, clientY: y }) =>
-      set({ mouse: [x - window.innerWidth / 2, y - window.innerHeight / 2] }),
-    []
-  )
+  const [{ top }, set] = useSpring(() => ({ top: 0 }))
 
-  const onScroll = useCallback(e => set({ top: e.target.scrollTop }), [])
+  const onScroll = useCallback(e => {
+    set({ top: e.target.scrollTop })
+  }, [])
 
   return (
-    <div>
+    <>
       <GlobalStyle />
-      <Welcome top={top} mouse={mouse} />
-      <City top={top} mouse={mouse} />
+      <Welcome top={top} />
+      <City top={top} />
       <Card />
-      <ScrollContainer onScroll={onScroll} onMouseMove={onMouseMove}>
+      <ScrollContainer onScroll={onScroll}>
         <div style={{ height: '525vh' }} />
       </ScrollContainer>
-    </div>
+    </>
   )
 }
 
