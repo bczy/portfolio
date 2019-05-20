@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import Card from './components/Card'
 import City from './components/City'
 import Welcome from './components/Welcome'
+import ScrollMessage from './components/ScrollMessage'
 
 export default function App () {
   const [{ top }, set] = useSpring(() => ({ top: 0 }))
@@ -15,11 +16,14 @@ export default function App () {
   return (
     <>
       <GlobalStyle />
-      <City top={top} />
-      <Welcome top={top} />
+      <Scroller>
+        <City top={top} />
+        <Welcome top={top} />
+      </Scroller>
+      <ScrollMessage top={top} />
       <Card />
-      <ScrollContainer onScroll={onScroll}>
-        <div style={{ height: '525vh' }} />
+      <ScrollContainer className='crt' onScroll={onScroll}>
+        <div className='crt' style={{ height: '525vh' }} />
       </ScrollContainer>
     </>
   )
@@ -30,11 +34,9 @@ const ScrollContainer = styled.div(() => ({
   overflow: 'auto',
   top: '0px',
   width: '100%',
-  height: '150vh',
-  fontSize: '20em',
-  fontWeight: '800',
-  lineHeight: '0.9em'
+  height: '100vh'
 }))
+const Scroller = styled.div``
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -46,7 +48,32 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
+.crt::after {
+  content: ' ';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.crt::before {
+  content: ' ';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 200% 3px, 6px 100%;
+}
 div {
   @import url('https://fonts.googleapis.com/css?family=VT323');
 }

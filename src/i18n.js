@@ -14,13 +14,12 @@ i18next.init({
         idCard: {
           brief: 'Bertrand (aka trambz), coding enthousiast.',
           skills: 'Skills: React, VuesJS, Unity, C#, C++',
-          hobbies:
-            'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
+          hobbies: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
         },
+        scrollDown: 'SCROLL DOWN',
         welcome: 'Welcome to my playground!',
-        description: 'This is where I test some JS coding stuff.',
-        extraContent:
-          'You will find here some demos, proofs of concept and links to my professional stuff...'
+        description: "Where you'll find some links to some stuff...",
+        extraContent: 'blabla blablabla blablablabla!'
       }
     },
     fr: {
@@ -29,8 +28,7 @@ i18next.init({
         idCard: {
           brief: 'Bertrand (aka trambz), coding enthousiast.',
           skills: 'Skills: React, VuesJS, Unity, C#, C++',
-          line4:
-            'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
+          line4: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
         }
       }
     }

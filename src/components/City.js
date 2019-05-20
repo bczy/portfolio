@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 import { Canvas } from 'react-three-fiber'
 import * as THREE from 'three'
 import Building from './Building'
@@ -29,41 +29,41 @@ function Skyline ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSp
   return backGroundBuildings
 }
 function City ({ top }) {
-  const canvas = useRef()
-  const canvasWidth = canvas
-  const firstLine = {
-    nbBuildings: 20,
-    url: 'img/skyline-a.png',
-    width: 128,
-    height: 240,
-    top,
-    z: 2
-  }
-  const secondLine = {
-    nbBuildings: 15,
-    url: 'img/buildings-bg.png',
-    width: 67,
-    height: 46,
-    y: -40,
-    z: 20,
-    top,
-    randomSpacing: true
-  }
-  const thirdLine = {
-    nbBuildings: 15,
-    url: 'img/buildings-bg.png',
-    width: 77,
-    height: 62,
-    y: -30,
-    z: 32,
-    top,
-    randomSpacing: true
-  }
+  const buildingLayers = [
+    {
+      nbBuildings: 4,
+      url: 'img/skyline-a.png',
+      width: 128,
+      height: 240,
+      top,
+      z: 2
+    },
+    {
+      nbBuildings: 30,
+      url: 'img/buildings-bg.png',
+      width: 67,
+      height: 46,
+      y: -40,
+      z: 20,
+      top,
+      randomSpacing: true
+    },
+    {
+      nbBuildings: 50,
+      url: 'img/buildings-bg.png',
+      width: 77,
+      height: 62,
+      y: -30,
+      z: 32,
+      top,
+      randomSpacing: true
+    }
+  ]
   return (
-    <Canvas ref={canvas} style={{ height: '675px' }} camera={{ position: [0, 0, 110] }}>
-      <Foreground buildings={Skyline(firstLine, canvasWidth)} />
-      <Foreground buildings={Skyline(secondLine)} />
-      <Foreground buildings={Skyline(thirdLine)} />
+    <Canvas style={{ height: '100%', position: 'fixed' }} camera={{ position: [0, 0, 110] }}>
+      {buildingLayers.map((building, i) => (
+        <Foreground buildings={Skyline(building)} key={i} />
+      ))}
     </Canvas>
   )
 }
