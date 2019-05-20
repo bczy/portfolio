@@ -15,8 +15,8 @@ export default function App () {
   return (
     <>
       <GlobalStyle />
-      <Welcome top={top} />
       <City top={top} />
+      <Welcome top={top} />
       <Card />
       <ScrollContainer onScroll={onScroll}>
         <div style={{ height: '525vh' }} />
@@ -30,7 +30,7 @@ const ScrollContainer = styled.div(() => ({
   overflow: 'auto',
   top: '0px',
   width: '100%',
-  height: '200vh',
+  height: '150vh',
   fontSize: '20em',
   fontWeight: '800',
   lineHeight: '0.9em'
@@ -42,12 +42,12 @@ body {
   background-color: #222;
   margin:0;
   padding:0;
-  font-family: 'Muli', sans-serif;
+  font-family: VT323;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 div {
-  @import url('https://fonts.googleapis.com/css?family=Muli');
+  @import url('https://fonts.googleapis.com/css?family=VT323');
 }
 `

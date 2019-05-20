@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { animated } from 'react-spring-three'
+import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
-function Building ({ x, args, texture, y, z }) {
+function Building ({ top, x, args, texture, y, z }) {
+  const initialX = x
+  const building = useRef()
+  useRender(() => {
+    building.current.position.x = initialX - (top.value / 50) * z
+  })
+
   return (
-    <mesh position={new THREE.Vector3(x, y, z)}>
+    <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
       <planeGeometry attach='geometry' args={args} />
       <meshBasicMaterial attach='material' transparent>
         <primitive attach='map' object={texture} depthTest />
       </meshBasicMaterial>
-    </mesh>
+    </animated.mesh>
   )
 }
 
