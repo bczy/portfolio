@@ -11,7 +11,7 @@ const  Foreground = ({ buildings }) => {
 
 const  Skyline = ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSpacing }) => {
   const BuildingsBgTexture = useMemo(() => new THREE.TextureLoader().load(url), [url])
-  const backGroundBuildings = []
+  
   const getSpace = () => (randomSpacing ? Math.random() * width : 0);
   return Array.from({length: nbBuildings}, (_, i) => ({
     texture: BuildingsBgTexture,
