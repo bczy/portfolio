@@ -3,32 +3,27 @@ import { Canvas } from 'react-three-fiber'
 import * as THREE from 'three'
 import Building from './Building'
 
-function Foreground ({ buildings }) {
+const  Foreground = ({ buildings }) => {
   return buildings.map((building, i) => {
     return <Building key={i} {...building} />
   })
 }
 
-function Skyline ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSpacing }) {
+const  Skyline = ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSpacing }) => {
   const BuildingsBgTexture = useMemo(() => new THREE.TextureLoader().load(url), [url])
   const backGroundBuildings = []
-
-  for (var i = 0; i < nbBuildings; i++) {
-    let x = i * width - 120
-    if (randomSpacing) x += Math.random() * width
-
-    backGroundBuildings.push({
-      texture: BuildingsBgTexture,
-      x: x,
-      y: y,
-      z: z,
-      args: [width, height],
-      top: top
-    })
-  }
-  return backGroundBuildings
+  const getSpace = () => (randomSpacing ? Math.random() * width : 0);
+  return Array.from({length: nbBuildings}, (_, i) => ({
+    texture: BuildingsBgTexture,
+    x : i * width - 120  + getSpace(),
+    y,
+    z,
+    args: [width, height],
+    top,
+  }))  ;
 }
-function City ({ top }) {
+
+export default function City ({ top }) {
   const buildingLayers = [
     {
       nbBuildings: 4,
@@ -68,4 +63,4 @@ function City ({ top }) {
   )
 }
 
-export default City
+
