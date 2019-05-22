@@ -1,6 +1,6 @@
-export default function getLevelData(top){
+export default function getLevelData (top) {
   return {
-    buildingLayers : [
+    buildingLayers: [
       {
         nbBuildings: 6,
         url: ['img/skyline-a.png', 'img/skyline-b.png'],
@@ -29,12 +29,12 @@ export default function getLevelData(top){
         top,
         randomSpacing: true
       }
-    ]
-    , cars : [
+    ],
+    cars: [
       {
         textureUrl: 'img/v-police.png',
         args: [41, 15],
-        x: 340,
+        x: 840,
         y: 5,
         z: 26,
         canvasWidth: 335
@@ -42,8 +42,16 @@ export default function getLevelData(top){
       {
         textureUrl: 'img/v-police.png',
         args: [45, 18],
-        x: 140,
+        x: 940,
         y: 0,
+        z: 30,
+        canvasWidth: 335
+      },
+      {
+        textureUrl: 'img/v-police.png',
+        args: [45, 18],
+        x: 140,
+        y: -30,
         z: 30,
         canvasWidth: 335
       },
@@ -66,7 +74,7 @@ export default function getLevelData(top){
       {
         textureUrl: 'img/v-police.png',
         args: [42, 16],
-        x: 240,
+        x: 540,
         y: -25,
         z: 30,
         canvasWidth: 335
