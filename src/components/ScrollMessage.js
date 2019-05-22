@@ -4,11 +4,11 @@ import styled, { keyframes } from 'styled-components'
 import i18n from '../i18n'
 
 export default function ScrollMessage ({ top }) {
-  const translateLeft = scrollRatio => `${scrollRatio > 121 ? 'none' : ''}`
+  const translateLeft = scrollRatio => `${1 - scrollRatio / 250}`
 
   return (
     <Blinky>
-      <animated.div style={{ display: top.interpolate(translateLeft) }}>
+      <animated.div style={{ opacity: top.interpolate(translateLeft) }}>
         {i18n.t('scrollDown')}
       </animated.div>
     </Blinky>
