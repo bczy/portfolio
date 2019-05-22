@@ -18,8 +18,8 @@ i18next.init({
         },
         scrollDown: 'SCROLL DOWN',
         welcome: 'Welcome to my playground!',
-        description: "Where you'll find some links to some stuff...",
-        extraContent: 'blabla blablabla blablablabla!'
+        description: 'Some links to some stuff...',
+        extraContent: "Hope you'll enjoy!"
       }
     },
     fr: {
