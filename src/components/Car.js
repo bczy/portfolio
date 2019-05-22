@@ -3,12 +3,18 @@ import { animated } from 'react-spring-three'
 import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
-export default function Car ({ args, canvasWidth, textureUrl, y, z, x }) {
+export default function Car ({ args, canvasWidth, textureUrl, y, z, x, top }) {
   const texture = useMemo(() => new THREE.TextureLoader().load(textureUrl), [textureUrl])
   const car = useRef()
+  const xOrigin = x
   useRender(() => {
-    if (car.current.position.x > 0) car.current.position.x -= 1
-    else car.current.position.x = canvasWidth
+    if (car.current.position.x > -150 - top.value) {
+      car.current.position.x = x - (1 + (top.value / 250) * z)
+    } else {
+      car.current.position.x = 1000
+      x = (Math.random() * xOrigin) | (0 + 150 + top.value)
+    }
+    x--
   })
 
   return (

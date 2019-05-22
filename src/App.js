@@ -6,7 +6,10 @@ import Welcome from './components/Welcome'
 import ScrollMessage from './components/ScrollMessage'
 
 export default function App () {
-  const [{ top }, set] = useSpring(() => ({ top: 0 }))
+  const [{ top }, set] = useSpring(() => ({
+    config: { mass: 1000, tension: 8000, friction: 5000 },
+    top: 0
+  }))
 
   const onScroll = useCallback(e => {
     set({ top: e.target.scrollTop })
@@ -21,7 +24,7 @@ export default function App () {
       </Scroller>
       <ScrollMessage top={top} />
       <ScrollContainer className='crt' onScroll={onScroll}>
-        <div className='crt' style={{ height: '525vh' }} />
+        <div className='crt' style={{ height: '1525vh' }} />
       </ScrollContainer>
     </>
   )

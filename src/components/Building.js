@@ -10,7 +10,7 @@ export default function Building ({ top, x, args, y, z, textureUrl }) {
   const building = useRef()
 
   useRender(() => {
-    building.current.position.x = x - (top.value / 50) * z
+    building.current.position.x = x - (top.value / 250) * z
   })
 
   return (
