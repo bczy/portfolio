@@ -3,11 +3,9 @@ import { animated } from 'react-spring'
 import styled, { keyframes } from 'styled-components'
 import i18n from '../i18n'
 
-function ScrollMessage ({ top }) {
-  const translateLeft = scrollRatio => {
-    console.log(`display: ${scrollRatio > 121 ? 'none' : 'block'}`)
-    return `${scrollRatio > 121 ? 'none' : 'block'}`
-  }
+export default function ScrollMessage ({ top }) {
+  const translateLeft = scrollRatio => `${scrollRatio > 121 ? 'none' : ''}`
+
   return (
     <Blinky>
       <animated.div style={{ display: top.interpolate(translateLeft) }}>
@@ -31,16 +29,12 @@ const Blinky = styled.div`
    {
     animation: ${blinker} 1s infinite;
     animation-direction: alternate;
-    font-size: 10em;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   div {
-    width: 100%;
-    height: 100%;
+    font-size: 10em;
+    display: flex; /* establish flex container */
+    flex-direction: column; /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;
   }
 `
-
-export default ScrollMessage

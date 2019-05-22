@@ -3,18 +3,16 @@ import { animated } from 'react-spring-three'
 import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
-export default function Building ({ top, x, args, y, z, textureUrl }) {
-  const url =
-    textureUrl instanceof Array ? textureUrl[(Math.random() * textureUrl.length) | 0] : textureUrl
-  const texture = useMemo(() => new THREE.TextureLoader().load(url), [url])
-  const building = useRef()
-
+export default function Car ({ args, canvasWidth, textureUrl, y, z, x }) {
+  const texture = useMemo(() => new THREE.TextureLoader().load(textureUrl), [textureUrl])
+  const car = useRef()
   useRender(() => {
-    building.current.position.x = x - (top.value / 50) * z
+    if (car.current.position.x > 0) car.current.position.x -= 1
+    else car.current.position.x = canvasWidth
   })
 
   return (
-    <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
+    <animated.mesh ref={car} position={new THREE.Vector3(x, y, z)}>
       <planeGeometry attach='geometry' args={args} />
       <meshBasicMaterial attach='material' transparent>
         <primitive attach='map' object={texture} depthTest />

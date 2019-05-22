@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { useSpring } from 'react-spring'
 import styled, { createGlobalStyle } from 'styled-components'
-import Card from './components/Card'
 import City from './components/City'
 import Welcome from './components/Welcome'
 import ScrollMessage from './components/ScrollMessage'
@@ -21,7 +20,6 @@ export default function App () {
         <Welcome top={top} />
       </Scroller>
       <ScrollMessage top={top} />
-      <Card />
       <ScrollContainer className='crt' onScroll={onScroll}>
         <div className='crt' style={{ height: '525vh' }} />
       </ScrollContainer>

@@ -1,37 +1,36 @@
-import React, { useMemo } from 'react'
+import React, { useRef } from 'react'
 import { Canvas } from 'react-three-fiber'
-import * as THREE from 'three'
 import Building from './Building'
+import Car from './Car'
 
-const  Foreground = ({ buildings }) => {
+const Foreground = ({ buildings }) => {
   return buildings.map((building, i) => {
     return <Building key={i} {...building} />
   })
 }
 
-const  Skyline = ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSpacing }) => {
-  const BuildingsBgTexture = useMemo(() => new THREE.TextureLoader().load(url), [url])
-  
-  const getSpace = () => (randomSpacing ? Math.random() * width : 0);
-  return Array.from({length: nbBuildings}, (_, i) => ({
-    texture: BuildingsBgTexture,
-    x : i * width - 120  + getSpace(),
+const Skyline = ({ nbBuildings, url, width, height, y = 0, z = 0, top, randomSpacing }) => {
+  const getRandomSpacing = () => (randomSpacing ? Math.random() * width : 0)
+  return Array.from({ length: nbBuildings }, (_, i) => ({
+    textureUrl: url,
+    x: i * width - 120 + getRandomSpacing(),
     y,
     z,
     args: [width, height],
-    top,
-  }))  ;
+    top
+  }))
 }
 
 export default function City ({ top }) {
+  const fiberCanvas = useRef()
   const buildingLayers = [
     {
-      nbBuildings: 4,
-      url: 'img/skyline-a.png',
+      nbBuildings: 6,
+      url: ['img/skyline-a.png', 'img/skyline-b.png'],
       width: 128,
       height: 240,
       top,
-      z: 2
+      z: 5
     },
     {
       nbBuildings: 30,
@@ -54,13 +53,35 @@ export default function City ({ top }) {
       randomSpacing: true
     }
   ]
+  const cars = [
+    {
+      textureUrl: 'img/v-police.png',
+      args: [41, 15],
+      y: 0,
+      z: 26,
+      canvasWidth: 335
+    },
+    {
+      textureUrl: 'img/v-police.png',
+      args: [31, 10],
+      y: -15,
+      z: 15,
+      x: 200,
+      canvasWidth: 335
+    }
+  ]
   return (
-    <Canvas style={{ height: '100%', position: 'fixed' }} camera={{ position: [0, 0, 110] }}>
+    <Canvas
+      ref={fiberCanvas}
+      style={{ height: '100%', position: 'fixed' }}
+      camera={{ position: [0, 0, 110] }}
+    >
       {buildingLayers.map((building, i) => (
         <Foreground buildings={Skyline(building)} key={i} />
+      ))}
+      {cars.map((car, i) => (
+        <Car {...car} key={i} />
       ))}
     </Canvas>
   )
 }
-
-
