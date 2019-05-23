@@ -3,8 +3,6 @@ import { animated } from 'react-spring-three'
 import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
-import Banner from './Banner'
-
 export default function Building ({ top, args, x, y, z, textureUrl, hasBanner }) {
   const url =
     textureUrl instanceof Array ? textureUrl[(Math.random() * textureUrl.length) | 0] : textureUrl
@@ -16,14 +14,11 @@ export default function Building ({ top, args, x, y, z, textureUrl, hasBanner })
   })
 
   return (
-    <>
-      {false && <Banner top textureUrl x y z position={new THREE.Vector3(x, y, z + 0.1)} />}
-      <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
-        <planeGeometry attach='geometry' args={args} />
-        <meshBasicMaterial attach='material' transparent>
-          <primitive attach='map' object={texture} depthTest />
-        </meshBasicMaterial>
-      </animated.mesh>
-    </>
+    <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
+      <planeGeometry attach='geometry' args />
+      <meshBasicMaterial attach='material' transparent>
+        <primitive attach='map' object={texture} depthTest />
+      </meshBasicMaterial>
+    </animated.mesh>
   )
 }

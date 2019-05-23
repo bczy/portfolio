@@ -10,6 +10,16 @@ export default function getLevelData (top) {
         z: 5
       },
       {
+        nbBuildings: 70,
+        url: 'img/buildings-bg.png',
+        width: 57,
+        height: 30,
+        y: -50,
+        z: 10,
+        top,
+        randomSpacing: true
+      },
+      {
         nbBuildings: 30,
         url: 'img/buildings-bg.png',
         width: 67,

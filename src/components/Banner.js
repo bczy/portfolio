@@ -4,7 +4,6 @@ import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
 export default function Building ({ top, x, y, z, textureUrl }) {
-  console.log(top, x, y, z, textureUrl)
   const url =
     textureUrl instanceof Array ? textureUrl[(Math.random() * textureUrl.length) | 0] : textureUrl
   const texture = useMemo(() => new THREE.TextureLoader().load(url), [url])

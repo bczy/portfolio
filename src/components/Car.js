@@ -19,7 +19,7 @@ export default function Car ({ args, canvasWidth, textureUrl, y, z, x, top }) {
 
   return (
     <animated.mesh ref={car} position={new THREE.Vector3(x, y, z)}>
-      <planeGeometry attach='geometry' args={args} />
+      <planeGeometry attach='geometry' args />
       <meshBasicMaterial attach='material' transparent>
         <primitive attach='map' object={texture} depthTest />
       </meshBasicMaterial>

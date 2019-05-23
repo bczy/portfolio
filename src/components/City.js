@@ -31,7 +31,7 @@ export default function City ({ top }) {
         <Foreground buildings={Skyline(building)} key={i} />
       ))}
       {cars.map((car, i) => (
-        <Car {...car} key={i} top={top} />
+        <Car {...car} key={i} top />
       ))}
     </Canvas>
   )
