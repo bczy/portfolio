@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import { useSpring } from 'react-spring'
 import styled, { createGlobalStyle } from 'styled-components'
 import City from './components/City'
-import Welcome from './components/Welcome'
-import ScrollMessage from './components/ScrollMessage'
+import ScrollingMessage from './components/ScrollingMessage'
+import ScrollDown from './components/ScrollDown'
 
 export default function App () {
   const [{ top }, set] = useSpring(() => ({
@@ -19,10 +19,19 @@ export default function App () {
     <>
       <GlobalStyle />
       <City top={top} />
-      <Welcome top={top} />
-      <ScrollMessage top={top} />
+      <ScrollDown top={top} />
+      <ScrollingMessage
+        top={top}
+        messages={['welcome', 'description', 'extra']}
+        paddingLeft='9em'
+      />
+      <ScrollingMessage
+        top={top}
+        messages={['siteMadeWidth', 'technoList', 'assets']}
+        paddingLeft='100em'
+      />
       <ScrollContainer onScroll={onScroll}>
-        <div className='crt' style={{ height: '525vh' }} />
+        <div className='crt' style={{ height: '1000vh' }} />
       </ScrollContainer>
     </>
   )
@@ -32,7 +41,7 @@ const ScrollContainer = styled.div(() => ({
   overflow: 'auto',
   top: '0px',
   width: '100%',
-  height: '200vh',
+  height: '100%',
   fontSize: '20em',
   fontWeight: '800',
   lineHeight: '0.9em'

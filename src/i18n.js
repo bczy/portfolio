@@ -19,7 +19,10 @@ i18next.init({
         scrollDown: 'SCROLL DOWN',
         welcome: 'Welcome to my playground!',
         description: 'Some links to some stuff...',
-        extraContent: "Hope you'll enjoy!"
+        extra: "Hope you'll enjoy!",
+        siteMadeWidth: 'This site has been made with:',
+        technoList: 'React, Spring, and Fiber',
+        assets: 'Thanks to ansimuz for assets'
       }
     },
     fr: {

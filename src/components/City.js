@@ -6,7 +6,8 @@ import Car from './Car'
 
 const Foreground = ({ buildings }) => {
   return buildings.map((building, i) => {
-    return <Building key={i} {...building} />
+    const hasBanner = Math.random() > 0.8
+    return <Building key={i} {...building} hasBanner />
   })
 }
 
