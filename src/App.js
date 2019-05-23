@@ -18,26 +18,25 @@ export default function App () {
   return (
     <>
       <GlobalStyle />
-      <Scroller>
-        <City top={top} />
-        <Welcome top={top} />
-      </Scroller>
+      <City top={top} />
+      <Welcome top={top} />
       <ScrollMessage top={top} />
-      <ScrollContainer className='crt' onScroll={onScroll}>
-        <div className='crt' style={{ height: '1525vh' }} />
+      <ScrollContainer onScroll={onScroll}>
+        <div className='crt' style={{ height: '525vh' }} />
       </ScrollContainer>
     </>
   )
 }
-
 const ScrollContainer = styled.div(() => ({
   position: 'absolute',
   overflow: 'auto',
   top: '0px',
   width: '100%',
-  height: '100vh'
+  height: '200vh',
+  fontSize: '20em',
+  fontWeight: '800',
+  lineHeight: '0.9em'
 }))
-const Scroller = styled.div``
 
 const GlobalStyle = createGlobalStyle`
 body {

@@ -44,7 +44,7 @@ export default function getLevelData (top) {
         args: [45, 18],
         x: 940,
         y: 0,
-        z: 30,
+        z: 33,
         canvasWidth: 335
       },
       {
@@ -52,7 +52,7 @@ export default function getLevelData (top) {
         args: [45, 18],
         x: 140,
         y: -30,
-        z: 30,
+        z: 33,
         canvasWidth: 335
       },
       {
@@ -76,7 +76,7 @@ export default function getLevelData (top) {
         args: [42, 16],
         x: 540,
         y: -25,
-        z: 30,
+        z: 33,
         canvasWidth: 335
       },
       {
