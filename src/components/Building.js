@@ -15,7 +15,7 @@ export default function Building ({ top, args, x, y, z, textureUrl, hasBanner })
 
   return (
     <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
-      <planeGeometry attach='geometry' args />
+      <planeGeometry attach='geometry' args={args} />
       <meshBasicMaterial attach='material' transparent>
         <primitive attach='map' object={texture} depthTest />
       </meshBasicMaterial>
