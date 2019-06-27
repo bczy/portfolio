@@ -17,7 +17,7 @@ export default function Building ({ top, args, x, y, z, textureUrl }) {
 
   // Building types: 0 => defaut, 1 => hotel
   const hasSign = Math.random() * 10 > 8
-
+  const zRatio = z / 25
   useRender(() => {
     building.current.position.x = x - (top.value / 250) * z
     if (sign.current) sign.current.position.x = x - (top.value / 250) * z
@@ -27,7 +27,7 @@ export default function Building ({ top, args, x, y, z, textureUrl }) {
     <>
       {hasSign && (
         <animated.mesh ref={sign} position={new THREE.Vector3(x, y + 5, z)}>
-          <planeGeometry attach='geometry' args={[(34 * z) / 25, (17 * z) / 25]} />
+          <planeGeometry attach='geometry' args={[34 * zRatio, 17 * zRatio]} />
           <meshBasicMaterial attach='material' transparent>
             <primitive attach='map' object={signTexture} depthTest />
           </meshBasicMaterial>
