@@ -6,7 +6,6 @@ import Car from './Car'
 
 const Foreground = ({ buildings }) => {
   return buildings.map((building, i) => {
-    const hasBanner = Math.random() > 0.8
     return <Building key={i} {...building} hasBanner />
   })
 }
@@ -31,7 +30,7 @@ export default function City ({ top }) {
         <Foreground buildings={Skyline(building)} key={i} />
       ))}
       {cars.map((car, i) => (
-        <Car {...car} key={i} top />
+        <Car {...car} key={i} top={top} />
       ))}
     </Canvas>
   )

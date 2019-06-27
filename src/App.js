@@ -22,13 +22,32 @@ export default function App () {
       <ScrollDown top={top} />
       <ScrollingMessage
         top={top}
-        messages={['welcome', 'description', 'extra']}
+        messages={[{ message: 'welcome' }, { message: 'description' }, { message: 'extra' }]}
         paddingLeft='9em'
       />
       <ScrollingMessage
         top={top}
-        messages={['siteMadeWidth', 'technoList', 'assets']}
+        messages={[{ message: 'siteMadeWidth' }, { message: 'technoList' }, { message: 'assets' }]}
         paddingLeft='100em'
+      />
+      <ScrollingMessage
+        top={top}
+        messages={[{ message: 'sitePurpose' }, { message: 'fun' }, { message: 'learnTechz' }]}
+        paddingLeft='200em'
+      />
+      <ScrollingMessage
+        top={top}
+        messages={[
+          { message: 'checkIt' },
+          { message: 'gitHub', link: 'https://linkedin.com/bczy' },
+          { message: 'linkedin', link: 'https://github.com/bczy' }
+        ]}
+        paddingLeft='300em'
+      />
+      <ScrollingMessage
+        top={top}
+        messages={[{ message: 'thanks' }, { message: 'medium' }]}
+        paddingLeft='370em'
       />
       <ScrollContainer onScroll={onScroll}>
         <div className='crt' style={{ height: '1000vh' }} />
@@ -68,7 +87,6 @@ body {
   background: rgba(18, 16, 16, 0.1);
   opacity: 0;
   z-index: 2;
-  pointer-events: none;
 }
 .crt::before {
   content: ' ';

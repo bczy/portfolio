@@ -9,7 +9,7 @@ export default function ScrollMessage ({ top }) {
   return (
     <Blinky>
       <animated.div style={{ opacity: top.interpolate(translateLeft) }}>
-        {i18n.t('scrollDown')}
+        {i18n.t('scroll')}
       </animated.div>
     </Blinky>
   )

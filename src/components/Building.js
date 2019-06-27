@@ -3,22 +3,42 @@ import { animated } from 'react-spring-three'
 import { useRender } from 'react-three-fiber'
 import * as THREE from 'three'
 
-export default function Building ({ top, args, x, y, z, textureUrl, hasBanner }) {
+export default function Building ({ top, args, x, y, z, textureUrl }) {
+  const building = useRef()
+  const sign = useRef()
+
   const url =
     textureUrl instanceof Array ? textureUrl[(Math.random() * textureUrl.length) | 0] : textureUrl
-  const texture = useMemo(() => new THREE.TextureLoader().load(url), [url])
-  const building = useRef()
+
+  const buildingTexture = useMemo(() => new THREE.TextureLoader().load(url), [url])
+  const signTexture = useMemo(() => new THREE.TextureLoader().load('img/hotel-sign.png'), [
+    'img/hotel-sign.png'
+  ])
+
+  // Building types: 0 => defaut, 1 => hotel
+  const hasSign = Math.random() * 10 > 8
 
   useRender(() => {
     building.current.position.x = x - (top.value / 250) * z
+    if (sign.current) sign.current.position.x = x - (top.value / 250) * z
   })
 
   return (
-    <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
-      <planeGeometry attach='geometry' args={args} />
-      <meshBasicMaterial attach='material' transparent>
-        <primitive attach='map' object={texture} depthTest />
-      </meshBasicMaterial>
-    </animated.mesh>
+    <>
+      {hasSign && (
+        <animated.mesh ref={sign} position={new THREE.Vector3(x, y + 5, z)}>
+          <planeGeometry attach='geometry' args={[(34 * z) / 25, (17 * z) / 25]} />
+          <meshBasicMaterial attach='material' transparent>
+            <primitive attach='map' object={signTexture} depthTest />
+          </meshBasicMaterial>
+        </animated.mesh>
+      )}
+      <animated.mesh ref={building} position={new THREE.Vector3(x, y, z)}>
+        <planeGeometry attach='geometry' args={args} />
+        <meshBasicMaterial attach='material' transparent>
+          <primitive attach='map' object={buildingTexture} depthTest />
+        </meshBasicMaterial>
+      </animated.mesh>
+    </>
   )
 }

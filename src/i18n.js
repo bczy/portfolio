@@ -5,8 +5,7 @@ i18next.init({
     // React already does escaping
     escapeValue: false
   },
-  lng: 'en', // 'en' | 'fr'
-  // Using simple hardcoded resources for simple example
+  lng: 'en',
   resources: {
     en: {
       translation: {
@@ -16,23 +15,22 @@ i18next.init({
           skills: 'Skills: React, VuesJS, Unity, C#, C++',
           hobbies: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
         },
-        scrollDown: 'SCROLL DOWN',
+        scroll: 'SCROLL',
         welcome: 'Welcome to my playground!',
         description: 'Some links to some stuff...',
         extra: "Hope you'll enjoy!",
         siteMadeWidth: 'This site has been made with:',
         technoList: 'React, Spring, and Fiber',
-        assets: 'Thanks to ansimuz for assets'
-      }
-    },
-    fr: {
-      translation: {
-        welcome: 'Bienvenue!',
-        idCard: {
-          brief: 'Bertrand (aka trambz), coding enthousiast.',
-          skills: 'Skills: React, VuesJS, Unity, C#, C++',
-          line4: 'Hobbies: street-art, longboarding, travels, soccer, retro-gaming'
-        }
+        assets: 'Thanks to ansimuz for assets',
+        sitePurpose: 'The purpose of the site?',
+        fun: 'just have some fun',
+        learnTechz: 'and learn new techz',
+        ifInterested: "if you're interested",
+        checkIt: 'you can check',
+        gitHub: 'my GitHub',
+        linkedin: 'and my linkedin',
+        thanks: 'Thanks for your visit!',
+        medium: '=> Medium article ASAP;)'
       }
     }
   }

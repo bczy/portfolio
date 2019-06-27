@@ -11,7 +11,13 @@ export default function ScrollingMessage ({ top, messages, paddingLeft }) {
       <Container>
         <div className='message'>
           {messages.map(message => (
-            <div>{i18n.t(message)}</div>
+            <div>
+              {message.link ? (
+                <a href={message.link}>{i18n.t(message.message)}</a>
+              ) : (
+                i18n.t(message.message)
+              )}
+            </div>
           ))}
         </div>
       </Container>
@@ -26,5 +32,8 @@ const Container = styled.div`
     letter-spacing: 0.001em;
     color: yellow;
     position: absolute;
+  }
+  a {
+    color: yellow;
   }
 `
