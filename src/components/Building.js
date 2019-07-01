@@ -19,7 +19,8 @@ export default function Building ({ top, args, x, y, z, textureUrl }) {
   const hasSign = Math.random() * 10 > 8
   const zRatio = z / 25
   useRender(() => {
-    building.current.position.x = x - (top.value / 250) * z
+    const newX = x - (top.value / 250) * z
+    building.current.position.x = newX
     if (sign.current) sign.current.position.x = x - (top.value / 250) * z
   })
 
