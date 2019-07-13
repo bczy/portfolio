@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import * as THREE from 'three'
-import { a, useSpring } from 'react-spring/three'
+import { a } from 'react-spring/three'
 import { useThree, useRender } from 'react-three-fiber'
 
 import { vertexShader, fragmentShader } from '../resources/shaders/AnimatedTextureShader'
