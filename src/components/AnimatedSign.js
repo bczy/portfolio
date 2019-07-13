@@ -1,47 +1,47 @@
 import React, { useMemo } from 'react'
 import * as THREE from 'three'
-import { useSpring, a } from 'react-spring/three'
-import { useThree } from 'react-three-fiber'
+import { a, useSpring } from 'react-spring/three'
+import { useThree, useRender } from 'react-three-fiber'
 
-import { vertexShader, fragmentShader } from '../resources/shaders/XFadeShader'
+import { vertexShader, fragmentShader } from '../resources/shaders/AnimatedTextureShader'
 
-export default function ImageWebgl ({ url1, url2, disp, intensity, hovered }) {
-  const { progress } = useSpring({ progress: hovered ? 1 : 0 })
+export default function AnimatedSign ({ position, args }) {
+  const { invalidate } = useThree()
+  let changeTextureId = true
 
-  const { gl, invalidate } = useThree()
+  const { randomTextureId } = useSpring({
+    randomTextureId: changeTextureId ? (Math.random() * 3) | 0 : randomTextureId
+  })
 
-  const args = useMemo(
-    () => {
-      const loader = new THREE.TextureLoader()
-      const texture1 = loader.load(url1, invalidate)
-      const texture2 = loader.load(url2, invalidate)
-      const dispTexture = loader.load(disp, invalidate)
+  const texture = useMemo(() => {
+    const loader = new THREE.TextureLoader()
+    const texture1 = loader.load('img/banner-big-1.png', invalidate)
+    const texture2 = loader.load('img/banner-big-2.png', invalidate)
+    const texture3 = loader.load('img/banner-big-3.png', invalidate)
 
-      dispTexture.wrapS = dispTexture.wrapT = THREE.RepeatWrapping
-      texture1.magFilter = texture2.magFilter = THREE.LinearFilter
-      texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+    return {
+      uniforms: {
+        texture1: { type: 't', value: texture1 },
+        texture2: { type: 't', value: texture2 },
+        texture3: { type: 't', value: texture3 },
+        textureId: { type: 'f', value: randomTextureId }
+      },
+      vertexShader,
+      fragmentShader
+    }
+  })
 
-      texture1.anisotropy = gl.capabilities.getMaxAnisotropy()
-      texture2.anisotropy = gl.capabilities.getMaxAnisotropy()
-      return {
-        uniforms: {
-          effectFactor: { type: 'f', value: intensity },
-          dispFactor: { type: 'f', value: 0 },
-          texture: { type: 't', value: texture1 },
-          texture2: { type: 't', value: texture2 },
-          disp: { type: 't', value: dispTexture }
-        },
-        vertexShader,
-        fragmentShader
-      }
-    },
-    [url1, url2, disp]
-  )
-
+  useRender(() => {
+    changeTextureId = Math.random() > 0.99
+  })
   return (
-    <mesh>
-      <planeBufferGeometry attach='geometry' args={[8, 8]} />
-      <a.shaderMaterial attach='material' args={[args]} uniforms-dispFactor-value={progress} />
-    </mesh>
+    <>
+      <planeBufferGeometry attach='geometry' args={args} position={position} />
+      <a.shaderMaterial
+        attach='material'
+        args={[texture]}
+        uniforms-textureId-value={randomTextureId}
+      />
+    </>
   )
 }
