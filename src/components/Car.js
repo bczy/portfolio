@@ -12,12 +12,8 @@ export default function Car ({ args, textureUrl, y, z, x, top }) {
     if (car.current.position.x > -135 - top.value) {
       car.current.position.x = x - (1 + (top.value / 250) * z)
     } else {
-      console.log(
-        'reseting car position: ' + car.current.position.x + ' - ' + xOrigin + ' x => ' + x
-      )
       car.current.position.x = 1000
       x = Math.random() * xOrigin + (0 + 135 + top.value)
-      console.log('   x is now : ' + x)
     }
     x--
   })
