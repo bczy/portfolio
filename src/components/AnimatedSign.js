@@ -5,13 +5,11 @@ import { useThree, useRender } from 'react-three-fiber'
 
 import { vertexShader, fragmentShader } from '../resources/shaders/AnimatedTextureShader'
 
+// TODO make a texture array from config or props...
 export default function AnimatedSign ({ position, args }) {
   const { invalidate } = useThree()
-  let changeTextureId = true
 
-  const { randomTextureId } = useSpring({
-    randomTextureId: changeTextureId ? (Math.random() * 3) | 0 : randomTextureId
-  })
+  let randomTextureId = (Math.random() * 3) | 0
 
   const texture = useMemo(() => {
     const loader = new THREE.TextureLoader()
@@ -32,7 +30,7 @@ export default function AnimatedSign ({ position, args }) {
   })
 
   useRender(() => {
-    changeTextureId = Math.random() > 0.99
+    if (Math.random() > 0.99) randomTextureId = (Math.random() * 3) | 0
   })
   return (
     <>
