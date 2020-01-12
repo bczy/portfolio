@@ -12,9 +12,14 @@ Assets made by [ansimuz](https://ansimuz.itch.io/)
 
 ## TODO
 Use camera position instead of moving meshes! Not laggy yet but this need to be optimized!
+
 Fix Firefox scroll system. 
+
 Fixing buildings shader billboard colors.
-NTH: Add lights, new screens, rocket launch,
+
+Update to three-fiber to version 4.
+
+NTH: Add lights, new screens, rocket launch...
 
 ## Available Scripts
 
