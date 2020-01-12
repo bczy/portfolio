@@ -11,10 +11,10 @@ This project also allowed me If you love animations and 3d stuff and smooth anim
 Assets made by [ansimuz](https://ansimuz.itch.io/)
 
 ## TODO
-Finish buildings shader billboard.
 Use camera position instead of moving meshes! Not laggy yet but this need to be optimized!
-
-Add lights, new screens, rocket launch, voxel 3d
+Fix Firefox scroll system. 
+Fixing buildings shader billboard colors.
+NTH: Add lights, new screens, rocket launch,
 
 ## Available Scripts
 
